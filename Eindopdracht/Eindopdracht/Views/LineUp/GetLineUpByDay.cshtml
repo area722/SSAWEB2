@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Eindopdracht.Models.LineUp>
+
+@{
+    ViewBag.Title = "GetLineUpByDay";
+}
+
+<h2>@ViewBag.Day.ToShortDateString()</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.From)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Until)
+        </th>
+        <th>
+            Stage
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.From)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Until)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stage.Name)
+        </td>
+    </tr>
+}
+
+</table>

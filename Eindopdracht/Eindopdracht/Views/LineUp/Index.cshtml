@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>LineUp</h2>
+<ul>
+
+    @foreach (DateTime item in Model)
+    {
+        <li>@Html.ActionLink(item.ToShortDateString(),"GetLineUpByDay",new{date=item})</li>
+    }
+</ul>

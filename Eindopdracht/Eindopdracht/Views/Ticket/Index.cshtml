@@ -1,0 +1,68 @@
+﻿@model Eindopdracht.Models.Ticket
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Bestel</h2>
+
+@if (!User.Identity.IsAuthenticated)
+{ 
+    <p>Register or Login</p>
+}
+else
+{
+    using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Ticket</legend>
+
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TicketHolder)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.TicketHolder)
+                @Html.ValidationMessageFor(model => model.TicketHolder)
+            </div>
+
+            <div class="editor-label">
+                <label for="type">type</label>
+            </div>
+            <div class="editor-field">
+                @Html.Partial("~/Views/Ticket/GetTypes.cshtml")
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TicketHolderEmail)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.TicketHolderEmail)
+                @Html.ValidationMessageFor(model => model.TicketHolderEmail)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Amount)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Amount)
+                @Html.ValidationMessageFor(model => model.Amount)
+            </div>
+
+            @Html.HiddenFor(m => m.Reserved)
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
